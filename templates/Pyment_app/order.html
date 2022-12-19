@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title_block %}ordered | item{% endblock%}
+{% block body_block %}
+    
+
+<div class="container mt-5">
+    <h2 class="text-center">Your Order</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mt-5" style="height: auto;">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Order ID</th>
+                                <th>Product</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                              <tr>
+                                <th scope="row"> {{forloop.counter}} </th>
+                                <td> <a href=""> {{order.orderID}}</a></td>
+                                <td>
+                                    {% for item in order.order_items.all %}
+                                      {{item}} <br>
+                                    {% endfor %}
+                                </td>
+                                <td class="badge badge-primary">prosesing your order</td>
+                              </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 my-5 text-center">
+            <a href="{% url 'Shop_App:home' %}">Back to home</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock  %}
